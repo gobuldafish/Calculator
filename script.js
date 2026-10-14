@@ -15,13 +15,13 @@ let numTwo = 0;
 let operator = '';
 function operate(numOne, numTwo, operator) {
     if(operator === '+') {
-        add(numOne, numTwo);
+        return add(numOne, numTwo);
     } else if (operator === '-') {
-        subtract(numOne, numTwo);
-    } else if (operator === '*') {
-        multiply(numOne,numTwo);
-    } else if (operator === '/') {
-        divide(numOne,numTwo);
+        return subtract(numOne, numTwo);
+    } else if (operator === '×') {
+        return multiply(numOne,numTwo);
+    } else if (operator === '÷') {
+        return divide(numOne,numTwo);
     }
 
 }
@@ -29,55 +29,212 @@ function operate(numOne, numTwo, operator) {
 // by the number buttons
 // and continue with numtwo once one of the 
 // operator buttons are clicked
+//While in part one we store the value of numOne
 const btn = document.querySelector(".btn");
 const display = document.querySelector("#calc-display");
 const btns = document.querySelectorAll(".btn");
+let onPartOne = true;
+let oneString = "";
+let twoString = "";
+let numString = "";
 btns.forEach((btn) => {
-    btn.addEventListener("click", function() {
+    btn.addEventListener("click", () => {
+        
         switch(btn.textContent) {
             case "0":
-                display.textContent += "0";
+                numString = "0";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "1":
-                display.textContent += "1";
+                numString = "1";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "2":
-                display.textContent += "2";
+                numString = "2";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "3":
-                display.textContent += "3";
+                numString = "3";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "4":
-                display.textContent += "4";
+                numString = "4";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "5":
-                display.textContent += "5";
+                numString = "5";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "6":
-                display.textContent += "6";
+                numString = "6";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "7":
-                display.textContent += "7";
+                numString = "7";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "8":
-                display.textContent += "8";
+                numString = "8";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "9":
-                display.textContent += "9";
+                numString = "9";
+                display.textContent += numString;
+                if(onPartOne) {
+                    oneString += numString;
+                    numOne = +oneString;
+                } else {
+                    twoString += numString;
+                    numTwo = +twoString;
+                }
                 break;
             case "+":
-                display.textContent = "";
+                if(onPartOne) {
+                    onPartOne = false;
+                } else {
+                    numOne = operate(numOne, numTwo, operator);
+                    numTwo = 0;
+                    display.textContent = numOne.toString();
+                }
+                operator = "+";
+                oneString = "";
+                twoString = "";
+                display.textContent += operator;
+                break;
             case "-":
-                display.textContent = "";
+                if(onPartOne) {
+                    onPartOne = false;
+                } else {
+                    numOne = operate(numOne, numTwo, operator);
+                    numTwo = 0;
+                    display.textContent = numOne.toString()
+                }
+                operator = "-";
+                oneString = "";
+                twoString = "";
+                display.textContent += operator;
+                break;
             case "×":
-                display.textContent = "";
+                if(onPartOne) {
+                    onPartOne = false;
+                } else {
+                    numOne = operate(numOne, numTwo, operator);
+                    numTwo = 0;
+                    display.textContent = numOne.toString()
+                }
+                operator = "×";
+                oneString = "";
+                twoString = "";
+                display.textContent += operator;
+                break;
             case "÷":
-                display.textContent = "";
+                if(onPartOne) {
+                    onPartOne = false;
+                } else {
+                    numOne = operate(numOne, numTwo, operator);
+                    numTwo = 0;
+                    display.textContent = numOne.toString()
+                }
+                operator = "÷";
+                oneString = "";
+                twoString = "";
+                display.textContent += operator;
+                break;
+            case "=":
+                
+                oneString = "";
+                twoString = "";
+                numString = "";
+                onPartOne = true;
+                numOne = operate(numOne, numTwo, operator);
+                display.textContent = numOne.toString();
+                
+                break;
             case "C":
                 display.textContent = "";
+                numOne = 0;
+                numTwo = 0;
+                numString = "";
+                oneString = "";
+                twoString = "";
+                operator = "";
+                onPartOne = true;
+                break;
+
         }
     });
+    
 })
+
+
+
+    
+
+
+
 
 
 
