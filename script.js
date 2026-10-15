@@ -34,15 +34,21 @@ const btn = document.querySelector(".btn");
 const display = document.querySelector("#calc-display");
 const btns = document.querySelectorAll(".btn");
 let onPartOne = true;
+let equalPressed = false;
 let oneString = "";
 let twoString = "";
 let numString = "";
+
 btns.forEach((btn) => {
     btn.addEventListener("click", () => {
         
         switch(btn.textContent) {
             case "0":
                 numString = "0";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -54,6 +60,10 @@ btns.forEach((btn) => {
                 break;
             case "1":
                 numString = "1";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -65,6 +75,10 @@ btns.forEach((btn) => {
                 break;
             case "2":
                 numString = "2";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -76,6 +90,10 @@ btns.forEach((btn) => {
                 break;
             case "3":
                 numString = "3";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -87,6 +105,10 @@ btns.forEach((btn) => {
                 break;
             case "4":
                 numString = "4";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -98,6 +120,10 @@ btns.forEach((btn) => {
                 break;
             case "5":
                 numString = "5";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -109,6 +135,10 @@ btns.forEach((btn) => {
                 break;
             case "6":
                 numString = "6";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -120,6 +150,10 @@ btns.forEach((btn) => {
                 break;
             case "7":
                 numString = "7";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -131,6 +165,10 @@ btns.forEach((btn) => {
                 break;
             case "8":
                 numString = "8";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -142,6 +180,10 @@ btns.forEach((btn) => {
                 break;
             case "9":
                 numString = "9";
+                if(equalPressed) {
+                    equalPressed = false;
+                    display.textContent = "";
+                }
                 display.textContent += numString;
                 if(onPartOne) {
                     oneString += numString;
@@ -152,12 +194,13 @@ btns.forEach((btn) => {
                 }
                 break;
             case "+":
+                equalPressed = false;
                 if(onPartOne) {
                     onPartOne = false;
                 } else {
                     numOne = operate(numOne, numTwo, operator);
                     numTwo = 0;
-                    display.textContent = numOne.toString();
+                    display.textContent = (Math.round((numOne + Number.EPSILON) * 100)/100).toString();
                 }
                 operator = "+";
                 oneString = "";
@@ -165,12 +208,13 @@ btns.forEach((btn) => {
                 display.textContent += operator;
                 break;
             case "-":
+                equalPressed = false;
                 if(onPartOne) {
                     onPartOne = false;
                 } else {
                     numOne = operate(numOne, numTwo, operator);
                     numTwo = 0;
-                    display.textContent = numOne.toString()
+                    display.textContent = (Math.round((numOne + Number.EPSILON) * 100)/100).toString();
                 }
                 operator = "-";
                 oneString = "";
@@ -178,12 +222,13 @@ btns.forEach((btn) => {
                 display.textContent += operator;
                 break;
             case "×":
+                equalPressed = false;
                 if(onPartOne) {
                     onPartOne = false;
                 } else {
                     numOne = operate(numOne, numTwo, operator);
                     numTwo = 0;
-                    display.textContent = numOne.toString()
+                    display.textContent = (Math.round((numOne + Number.EPSILON) * 100)/100).toString();
                 }
                 operator = "×";
                 oneString = "";
@@ -191,12 +236,13 @@ btns.forEach((btn) => {
                 display.textContent += operator;
                 break;
             case "÷":
+                equalPressed = false;
                 if(onPartOne) {
                     onPartOne = false;
                 } else {
                     numOne = operate(numOne, numTwo, operator);
                     numTwo = 0;
-                    display.textContent = numOne.toString()
+                    display.textContent = (Math.round((numOne + Number.EPSILON) * 100)/100).toString();;
                 }
                 operator = "÷";
                 oneString = "";
@@ -210,7 +256,8 @@ btns.forEach((btn) => {
                 numString = "";
                 onPartOne = true;
                 numOne = operate(numOne, numTwo, operator);
-                display.textContent = numOne.toString();
+                equalPressed = true;
+                display.textContent = (Math.round((numOne + Number.EPSILON) * 100)/100).toString();
                 
                 break;
             case "C":
@@ -222,6 +269,7 @@ btns.forEach((btn) => {
                 twoString = "";
                 operator = "";
                 onPartOne = true;
+                equalPressed = false;
                 break;
 
         }
